@@ -38,19 +38,21 @@ public class Main {
 //                )
 //                .toList();
 
-        List<Student> itStudents = Stream.iterate(0, i -> i).limit(5)
+        List<Student> itStudents = Stream.iterate(0, i -> i)
                         .map(s -> {
                             return Student.builder()
                                     .name(names.get(new Random().nextInt(names.size())))
                                     .grades(
                                             DoubleStream.generate(
-                                                    () -> {return (double) (new Random().nextInt(5));}
+                                                    () -> {return Math.round(2. + new Random().nextDouble() * 3.);}
                                             ).limit(5).boxed().collect(Collectors.toList())
                                     )
                                     .speciality("Информатика")
                                     .build();
                         }
                 )
+                .filter(s -> s.getAverageGrade() >= 4.5)
+                .limit(5)
                 .toList();
 
         List<Student> sortedStudents = new ArrayList<>(itStudents);
