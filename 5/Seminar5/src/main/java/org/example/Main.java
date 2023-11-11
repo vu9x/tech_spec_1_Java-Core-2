@@ -55,11 +55,14 @@ public class Main {
 
         List<Student> sortedStudents = new ArrayList<>(itStudents);
 
-//        Collections.sort(sortedStudents, new Comparator<Student>() {
-//        });
+        Collections.sort(sortedStudents, new Comparator<Student>() {
+            public int compare(Student a, Student b){
+                return (Integer)Double.compare(b.getAverageGrade(), a.getAverageGrade());
+            }
+        });
 
-        System.out.println(itStudents.size());
         System.out.println(itStudents);
+        System.out.println(sortedStudents);
     }
 
 }
